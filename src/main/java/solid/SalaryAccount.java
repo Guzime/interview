@@ -2,7 +2,7 @@ package solid;
 
 import java.math.BigDecimal;
 
-public class SalaryAccount extends Account {
+public class SalaryAccount extends PaymentAccount {
 
 
     public SalaryAccount(String numberAccount, BigDecimal balance) {

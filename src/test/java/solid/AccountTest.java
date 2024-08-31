@@ -29,11 +29,4 @@ class AccountTest {
         account.refill(new BigDecimal(64000));
         assertEquals(account.getBalance(), new BigDecimal(128000));
     }
-
-    @Test
-    void payment() {
-        Account account = new Account("S90983RUB234093", new BigDecimal(64000));
-        account.payment(new BigDecimal(63000));
-        assertEquals(account.getBalance(), new BigDecimal(1000));
-    }
 }
