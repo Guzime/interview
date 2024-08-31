@@ -29,6 +29,6 @@ public class Account {
 
     public void payment(BigDecimal sum) {
         System.out.println("You payment on account " + numberAccount + " for sum " + sum);
-        balance = balance.min(sum);
+        balance = balance.subtract(sum);
     }
 }
