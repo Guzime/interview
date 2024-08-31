@@ -3,8 +3,8 @@ package solid;
 import java.math.BigDecimal;
 
 public class Account {
-    private final String numberAccount;
-    private BigDecimal balance;
+    protected final String numberAccount;
+    protected BigDecimal balance;
 
     public Account(String numberAccount, BigDecimal balance) {
         this.balance = balance;
