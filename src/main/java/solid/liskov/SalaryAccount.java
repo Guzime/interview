@@ -1,4 +1,4 @@
-package solid;
+package solid.liskov;
 
 import java.math.BigDecimal;
 

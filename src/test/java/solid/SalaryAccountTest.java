@@ -1,6 +1,7 @@
 package solid;
 
 import org.junit.jupiter.api.Test;
+import solid.liskov.SalaryAccount;
 
 import java.math.BigDecimal;
 

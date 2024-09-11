@@ -1,6 +1,7 @@
 package solid;
 
 import org.junit.jupiter.api.Test;
+import solid.liskov.DepositAccount;
 
 import java.math.BigDecimal;
 
