@@ -2,7 +2,7 @@ package multithreading;
 
 import static java.util.stream.IntStream.rangeClosed;
 
-public class Runner {
+public class JoinAndSleep {
     public static final int FROM_FIRST_THREAD = 1;
     public static final int TO_FIRST_THREAD = 500;
 
