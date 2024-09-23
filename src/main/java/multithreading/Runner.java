@@ -10,7 +10,7 @@ public class Runner {
     public static final int TO_SECOND_THREAD = 1000;
 
     public static void main(String[] args) throws InterruptedException {
-        final TaskSummingNumbers firstTask = new TaskSummingNumbers(FROM_FIRST_THREAD, TO_SECOND_THREAD);
+        final TaskSummingNumbers firstTask = new TaskSummingNumbers(FROM_FIRST_THREAD, TO_FIRST_THREAD);
         final TaskSummingNumbers secondTask = new TaskSummingNumbers(FROM_SECOND_THREAD, TO_SECOND_THREAD);
         final Thread firstThread = new Thread(firstTask);
         final Thread secondThread = new Thread(secondTask);
@@ -21,7 +21,8 @@ public class Runner {
         // 2 подзадачи вывводят только после того как они сделали свои вычисления поэтому вывводится main
         System.out.println("Результат обработки - " + (firstTask.getResultNumber() + secondTask.getResultNumber()));
 
-        // join дожидается вызова из основного потока поэтому результат обработки будет правильным
+        // join дожидается вызова из основного потока (из которого он был вызван)
+        // поэтому результат обработки будет правильным
         firstThread.join();
         secondThread.join();
         System.out.println("Результат обработки - " + (firstTask.getResultNumber() + secondTask.getResultNumber()));
