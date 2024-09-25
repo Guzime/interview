@@ -7,7 +7,9 @@ public class ThreadStage {
 
         final Thread thread = new Thread(() -> {
             try {
+                showThreadState(Thread.currentThread());
                 // join заставляет ждать поток класса thread по сути переводить его в стейдж Waiting
+                // Если вызываем mainThread.join(2000) то будет TIMED_WAITING;
                 mainThread.join();
 
                 // Код дальше не выполняется пока на 20 строчке не пройдет sleep и 21 строка еще не выполниться
@@ -16,6 +18,7 @@ public class ThreadStage {
                 throw new RuntimeException(e);
             }
         });
+        showThreadState(thread);
         thread.start();
         Thread.sleep(1000);
         showThreadState(thread);
