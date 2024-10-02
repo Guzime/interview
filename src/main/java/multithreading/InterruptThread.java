@@ -37,6 +37,7 @@ public class InterruptThread {
 
     public static void doRequest() throws InterruptedException {
         System.out.println(MESSAGE_WAS_SENT + " on the thread - " + Thread.currentThread());
+        // InterruptedException проброситься тогда, когда заснувший поток пытаются прервать !!!
         TimeUnit.SECONDS.sleep(DURATION);
         System.out.println(MESSAGE_WAS_RECEIVED + " on the thread - " + Thread.currentThread());
     }
