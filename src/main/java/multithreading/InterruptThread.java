@@ -30,7 +30,9 @@ public class InterruptThread {
             communicationThread.interrupt();
             stopServer();
         });
+        System.out.println("Start waiting on the main thread 5 seconds...");
         TimeUnit.SECONDS.sleep(5);
+        System.out.println("5 second left!");
         stoppingThread.start();
 
     }
