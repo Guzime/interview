@@ -7,21 +7,26 @@ public class ThreadStage {
 
         final Thread thread = new Thread(() -> {
             try {
-                showThreadState(Thread.currentThread());
+                System.out.println(Thread.currentThread().getName() + " state is "
+                        + Thread.currentThread().getState() + " which starting just now");
                 // join заставляет ждать поток класса thread по сути переводить его в стейдж Waiting
                 // Если вызываем mainThread.join(2000) то будет TIMED_WAITING;
                 mainThread.join();
 
-                // Код дальше не выполняется пока на 20 строчке не пройдет sleep и 21 строка еще не выполниться
-                showThreadState(Thread.currentThread());
+                // Код дальше не выполняется пока mainThread не закончит свою работу
+                System.out.println(Thread.currentThread().getName() + " state is "
+                        + Thread.currentThread().getState() + " which finish work after it waited mainThread");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
-        showThreadState(thread);
+        System.out.println(thread.getName() + " state is "
+                + thread.getState() + " which don't start");
         thread.start();
         Thread.sleep(1000);
-        showThreadState(thread);
+        System.out.println(thread.getName() + " state is "
+                + thread.getState() + " when mainThread sleep");
+
 
         System.out.println("Пробуем Terminated stage поймать");
         final Thread threadTerminated = new Thread(() -> {
