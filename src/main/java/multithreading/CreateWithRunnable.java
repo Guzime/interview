@@ -7,7 +7,8 @@ public class CreateWithRunnable {
         final Thread thread = new Thread(task);
         thread.start();
 
-        final Runnable taskDisplayThreadName = () -> System.out.println(Thread.currentThread().getName());
+        final Runnable taskDisplayThreadName = () ->
+                System.out.println(Thread.currentThread());
 
         //Здесь треды создаеются (отпачковываются) main -> Thread-0 -> Thread - 2 ... 12
         final Runnable taskCreatingThreads = () -> {
