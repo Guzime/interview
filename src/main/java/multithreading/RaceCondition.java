@@ -12,6 +12,7 @@ public class RaceCondition {
         Thread thread2 = new Thread(task);
 
         thread1.start();
+        //Получается что здесь при запуске захватает монитор всего объекта RaceCondition!!!
         thread2.start();
         thread1.join();
         thread2.join();
@@ -26,5 +27,10 @@ public class RaceCondition {
     // Код выполняемый в ключевом слове synchronized может выполняться только одним поток в произвольный квант времени
     public static synchronized void incrementCounter() {
         commonResource++;
+        /* Если ставим синхронизацию по участку кода, то код
+        синхронихируется по этому классу который мы указали
+        synchronized (RaceCondition.class) {
+            commonResource++;
+        }*/
     }
 }
