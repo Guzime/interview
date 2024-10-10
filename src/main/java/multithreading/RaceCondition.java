@@ -6,7 +6,7 @@ public class RaceCondition {
     public static int commonResource = 0;
     public static void main(String[] args) throws InterruptedException {
 
-        Runnable task = () -> range(0, 600).forEach(x -> commonResource++);
+        Runnable task = () -> range(0, 600).forEach(x -> incrementCounter());
 
         Thread thread1 = new Thread(task);
         Thread thread2 = new Thread(task);
@@ -21,5 +21,10 @@ public class RaceCondition {
         //2 - добавление в память + 1, 3 - запись обратно в память).
         //Получается что между 1 и 2 может произойти "грязное считывание"
         System.out.println(commonResource);
+    }
+
+    // Код выполняемый в ключевом слове synchronized может выполняться только одним поток в произвольный квант времени
+    public static synchronized void incrementCounter() {
+        commonResource++;
     }
 }
