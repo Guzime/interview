@@ -19,7 +19,7 @@ public class MessageProducingTask implements Runnable {
             while (!currentThread().isInterrupted()) {
                 Message producingMessage = messageFactory.create();
                 messageBroker.produce(producingMessage);
-                System.out.println("Producing message:" + producingMessage);
+                System.out.println("Producing message:" + producingMessage + " size  queue is " + messageBroker.getSize()) ;
                 TimeUnit.SECONDS.sleep(1);
             }
         } catch (InterruptedException e) {
