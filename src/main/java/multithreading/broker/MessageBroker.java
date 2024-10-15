@@ -47,8 +47,9 @@ public class MessageBroker {
         // важный момент, что извлечение сообщения messagesToBeConsumed.poll()
         // должно быть до вызова notify() т.к. высвобожденный поток должен увидеть
         // актуальное состояние объекта !!!
-        notify();
 
-        return messagesToBeConsumed.poll();
+        Message message = messagesToBeConsumed.poll();
+        notify();
+        return message;
     }
 }
