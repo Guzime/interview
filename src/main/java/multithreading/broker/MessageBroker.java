@@ -21,6 +21,8 @@ public class MessageBroker {
     public synchronized void produce(Message message) {
         try {
             while (messagesToBeConsumed.size() >= maxStoredMessages) {
+                // Заставляем поток ждать, и высвобождаем монитор объекта
+                // потому что синхронизированный метод захватит монитор объекта MessageBroker
                 wait();
             }
         } catch (InterruptedException e) {
@@ -33,11 +35,18 @@ public class MessageBroker {
     public synchronized Message consumed() {
         try {
             while (messagesToBeConsumed.isEmpty()) {
+                // spurious wakeup — редкая, но возможная ситуация,
+                // когда поток пробуждается из состояния ожидания без явного уведомления,
+                // поэтому используем while а не if
                 wait();
             }
         } catch (InterruptedException e) {
             currentThread().interrupt();
         }
+        // Уведомляем другие потоки (В данном случае ProducingThread), что мы высвободили монитор объекта
+        // важный момент, что извлечение сообщения messagesToBeConsumed.poll()
+        // должно быть до вызова notify() т.к. высвобожденный поток должен увидеть
+        // актуальное состояние объекта !!!
         notify();
 
         return messagesToBeConsumed.poll();
