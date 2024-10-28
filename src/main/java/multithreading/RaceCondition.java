@@ -3,6 +3,10 @@ package multithreading;
 import static java.util.stream.IntStream.range;
 
 public class RaceCondition {
+    // вот тут очень тонки момент, есть оператор valotile
+    // который гарантирует, что изменения увидеят остальные потоки
+    // но он не гарантирует того, что операции будут атомарными !!!
+    // Для этого можно использовать AtomicInteger()
     public static int commonResource = 0;
     public static void main(String[] args) throws InterruptedException {
 
