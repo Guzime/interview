@@ -16,7 +16,6 @@ class DepositAccountTest {
         assertEquals(balance, new BigDecimal(64000));
     }
 
-
     @Test
     void refill() {
         DepositAccount account = new DepositAccount("S90983RUB234093", new BigDecimal(64000));
