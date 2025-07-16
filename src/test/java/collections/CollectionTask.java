@@ -54,9 +54,6 @@ public class CollectionTask {
             } else {
                 System.out.println("trueTable at i = " + i + ", value is " + trueTable[i]);
             }
-
         }
-
     }
-
 }
