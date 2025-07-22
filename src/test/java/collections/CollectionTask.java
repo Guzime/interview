@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class CollectionTask {
 
     @Test
-    void showingCopy() throws NoSuchFieldException, IllegalAccessException {
+    void showingCopyInArrayList() throws NoSuchFieldException, IllegalAccessException {
         ArrayList<Long> numbers = new ArrayList<>();
         Object[] trueData = getCapacity(numbers);
 
