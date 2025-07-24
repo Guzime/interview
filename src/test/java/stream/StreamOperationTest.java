@@ -1,5 +1,7 @@
 package stream;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import solid.liskov.Account;
 
@@ -41,6 +43,22 @@ public class StreamOperationTest {
                 .flatMap(x -> x.getAccount().stream())
                 .filter(x -> x.getBalance().compareTo(new BigDecimal(200000)) > 0)
                 .toList());
+    }
+
+    @Test
+    @DisplayName("sorted() заставила выполниться сначала все map() и filter()")
+    void showingStatelessAndStatefulOperation() {
+        getCustomers().stream()
+                .filter(x -> {
+                    System.out.println("Filtering under 30 - " + x.getName());
+                    return x.getAge() < 30;
+                })
+                .map(x -> {
+                    System.out.println("Mapping into Stream<String> - " + x.getName());
+                    return x.getName();
+                })
+                .sorted()
+                .forEach(x -> System.out.println("Foreach - " + x));
     }
 
     private List<Customer> getCustomers() {
