@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class StreamOperationTest {
@@ -44,6 +45,37 @@ public class StreamOperationTest {
                 .filter(x -> x.getBalance().compareTo(new BigDecimal(200000)) > 0)
                 .toList());
     }
+
+    @Test
+    @DisplayName("Прогнали фильтрацию и маппинг без параллелизма")
+    void showingWithoutParallelInStreamApi() {
+        ArrayList<Integer> bigArray = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < 13000000; i++) {
+            bigArray.add(random.nextInt());
+        }
+        List<Integer> naturalsNumbers = bigArray.stream()
+                .filter(x -> x % 2 == 0)
+                .map(x -> x = x / 2)
+                .toList();
+    }
+
+    @Test
+    @DisplayName("Прогнали фильтрацию и маппинг без параллелизма")
+    void showingParallelInStreamApi() {
+        ArrayList<Integer> bigArray = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < 13000000; i++) {
+            bigArray.add(random.nextInt());
+        }
+        List<Integer> naturalsNumbers = bigArray.parallelStream()
+                .filter(x -> x % 2 == 0)
+                .map(x -> x = x / 2)
+                .toList();
+    }
+
 
     @Test
     @DisplayName("sorted() заставила выполниться сначала все map() и filter()")
